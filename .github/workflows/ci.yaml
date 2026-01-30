@@ -62,6 +62,7 @@ jobs:
       - name: Build Quartz
         run: |
           npm install
+          npm run update-index
           npx quartz build
         working-directory: ./source
 
