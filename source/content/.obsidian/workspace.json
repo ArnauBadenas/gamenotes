@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "League of legends/Competitive pick guide.md",
+                "file": "index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Competitive pick guide"
+              "title": "index"
             }
           }
         ],
@@ -123,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "League of legends/Competitive pick guide.md",
+                "file": "index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +133,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Competitive pick guide"
+              "title": "Backlinks for index"
             }
           },
           {
@@ -142,12 +142,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "League of legends/Competitive pick guide.md",
+                "file": "index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Competitive pick guide"
+              "title": "Outgoing links from index"
             }
           },
           {
@@ -171,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "League of legends/Competitive pick guide.md",
+                "file": "index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Competitive pick guide"
+              "title": "Outline of index"
             }
           }
         ]
@@ -199,12 +199,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a63e37d3f2167c28",
+  "active": "b77831b90dd9f87b",
   "lastOpenFiles": [
-    "League of legends/Wave control.md",
+    "Blue Palace/index.md",
+    "League of legends/index.md",
+    "Blue Palace",
     "index.md",
-    "League of legends/Cycling.md",
     "League of legends/Competitive pick guide.md",
+    "League of legends/Wave control.md",
+    "League of legends/Cycling.md",
     "category-folder/Some note.md",
     "category-folder/index.md",
     "League of legends",
