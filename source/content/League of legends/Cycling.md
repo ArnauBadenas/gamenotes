@@ -53,6 +53,16 @@ This document is a **structured champion cycling plan** for mastering wave contr
 - “Can I complete a push safely, or should I wait?”
 - Success: You understand every wave movement, lose CS on purpose, and leave lane with tempo intact.
 
+#### Quick Hard Lane Summary Table
+
+| Hard Lane Type              | Traits                               | Examples                        | Implication for Champion Pick           |
+| --------------------------- | ------------------------------------ | ------------------------------- | --------------------------------------- |
+| Long-range poke             | Constant harassment, low mobility    | Lux, Xerath, Ziggs, Vel’Koz     | Pick Orianna or Galio                   |
+| Early all-in / burst        | Strong level 2–3 trades              | LeBlanc, Fizz, Talon, Katarina  | Pick Orianna, focus on survival         |
+| Lane bully / high waveclear | Shoves constantly, denies wave setup | Syndra, Viktor, Anivia, Orianna | Pick Orianna, controlled push practice  |
+| High mobility assassins     | Gap close, punish misposition        | Akali, Yasuo, Ekko              | Pick Orianna or Galio for stability     |
+| Combination lanes           | Poke + all-in + shove                | Lux + roaming Talon             | Pick Orianna / Galio, Taliyah too risky |
+
 ---
 
 ### **Phase 2 — Controlled Pressure**
@@ -64,6 +74,14 @@ This document is a **structured champion cycling plan** for mastering wave contr
 - “Does my movement or spell usage maintain wave control?”
 - Success: Your pushes always lead to resets, wards, or safe roams; autopush is minimized.
 
+|Hard Lane Type|Traits|Examples|Implication for Champion Pick|
+|---|---|---|---|
+|Long-range poke|Constant harassment, low mobility|Lux, Xerath, Ziggs, Vel’Koz|Pick Aurora or Orianna; Taliyah risky|
+|Early all-in / burst|Strong level 2–3 trades|LeBlanc, Fizz, Talon, Katarina|Pick Aurora; Taliyah avoid|
+|Lane bully / high waveclear|Shoves constantly, denies wave setup|Syndra, Viktor, Anivia, Orianna|Pick Aurora for controlled push|
+|High mobility assassins|Gap close, punish misposition|Akali, Yasuo, Ekko|Pick Aurora or Galio for stability|
+|Combination lanes|Poke + all-in + shove|Lux + roaming Talon|Pick Aurora or Galio; Taliyah too risky|
+
 ---
 
 ### **Phase 3 — Anti-Poke & Stability**
@@ -74,6 +92,14 @@ This document is a **structured champion cycling plan** for mastering wave contr
 - “Can I survive poke without overcommitting?”
 - “Do I need to swap to Galio this matchup for stability?”
 - Success: You stay calm, reduce unnecessary trades, and maintain wave discipline even in losing lanes.
+
+| Hard Lane Type              | Traits                               | Examples                        | Implication for Champion Pick          |
+| --------------------------- | ------------------------------------ | ------------------------------- | -------------------------------------- |
+| Long-range poke             | Constant harassment, low mobility    | Lux, Xerath, Ziggs, Vel’Koz     | Pick Galio; Taliyah risky              |
+| Early all-in / burst        | Strong level 2–3 trades              | LeBlanc, Fizz, Talon, Katarina  | Pick Galio; durable lane presence      |
+| Lane bully / high waveclear | Shoves constantly, denies wave setup | Syndra, Viktor, Anivia, Orianna | Pick Galio; freeze or slow push safely |
+| High mobility assassins     | Gap close, punish misposition        | Akali, Yasuo, Ekko              | Pick Galio; safer vs dive              |
+| Combination lanes           | Poke + all-in + shove                | Lux + roaming Talon             | Pick Galio; Taliyah too risky          |
 
 ---
 

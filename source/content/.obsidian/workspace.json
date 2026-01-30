@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "League of legends/Cycling.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "Cycling"
             }
           }
         ],
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "index.md",
+                "file": "League of legends/Cycling.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +119,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for index"
+              "title": "Backlinks for Cycling"
             }
           },
           {
@@ -128,12 +128,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index.md",
+                "file": "League of legends/Cycling.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from index"
+              "title": "Outgoing links from Cycling"
             }
           },
           {
@@ -157,13 +157,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index.md",
+                "file": "League of legends/Cycling.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of index"
+              "title": "Outline of Cycling"
             }
           }
         ]
@@ -187,9 +187,12 @@
   },
   "active": "61f623c1c955d27a",
   "lastOpenFiles": [
+    "League of legends/Untitled.md",
+    "League of legends/Cycling.md",
+    "League of legends/Competitive pick guide.md",
+    "index.md",
     "Blue Palace/index.md",
     "League of legends/index.md",
-    "index.md",
     "asdasd/index.md",
     "asdasd",
     "asdasd",
@@ -199,9 +202,7 @@
     "Hollow Knight",
     "folder-listing.md",
     "Blue Palace",
-    "League of legends/Competitive pick guide.md",
     "League of legends/Wave control.md",
-    "League of legends/Cycling.md",
     "category-folder/Some note.md",
     "category-folder/index.md",
     "League of legends",
