@@ -6,15 +6,15 @@
 
 # Quick Decision Rules
 
-| Champion          | Pick When                                 | Role in Team / Objective         |
-| ----------------- | ----------------------------------------- | -------------------------------- |
-| [[#Taliyah]]      | Safe/moderate lanes, want roaming + tempo | Roam / objective control         |
-| [[#Orianna]]      | Enemy poke / hard lane, teamfight needed  | Wave control + teamfight utility |
-| [[#Aurora]]       | Safe lane, want controlled pushes         | Roaming + lane pressure          |
-| [[#Galio]]        | Hard poke / burst lane, need frontline    | Tank / engage / anti-poke        |
-| [[#Twisted Fate]] | Map-wide pick pressure, lane manageable   | Roaming, pick setup              |
-| [[#Pantheon]]     | Aggressive lane, low mobility enemy       | Early lane dominance / roam      |
-| [[#Soraka Mid]]   | Enemy poke, sustain needed                | Lane sustain / team heal         |
+| Champion                      | Pick When                                 | Role in Team / Objective         |
+| ----------------------------- | ----------------------------------------- | -------------------------------- |
+| [Taliyah](#Taliyah)           | Safe/moderate lanes, want roaming + tempo | Roam / objective control         |
+| [Orianna](#Orianna)           | Enemy poke / hard lane, teamfight needed  | Wave control + teamfight utility |
+| [Aurora](#Aurora)             | Safe lane, want controlled pushes         | Roaming + lane pressure          |
+| [Galio](#Galio)               | Hard poke / burst lane, need frontline    | Tank / engage / anti-poke        |
+| [Twisted Fate](#Twisted-Fate) | Map-wide pick pressure, lane manageable   | Roaming, pick setup              |
+| [Pantheon](#Pantheon)         | Aggressive lane, low mobility enemy       | Early lane dominance / roam      |
+| [Soraka](#Soraka)             | Enemy poke, sustain needed                | Lane sustain / team heal         |
 
 ---
 
@@ -113,7 +113,7 @@
 
 ---
 
-# Twisted Fate
+# Twisted-Fate
 
 **When to Pick:**  
 - Want map-wide pressure / pick potential.  
@@ -160,7 +160,7 @@
 
 ---
 
-# Soraka Mid
+# Soraka
 
 **When to Pick:**  
 - Enemy poke-heavy AP scaling.  
