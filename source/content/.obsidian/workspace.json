@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "0571c1c94d829fac",
+        "id": "c9b336f8fd926aef",
         "type": "tabs",
         "children": [
           {
-            "id": "47ef711f7e8c1d64",
+            "id": "ad89760b22aeca4b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "League of legends/Competitive pick guide.md",
+                "file": "League of legends/Laning Phase.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Competitive pick guide"
-            }
-          },
-          {
-            "id": "61f623c1c955d27a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Wanderstop/Silver Moonlight Tea.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Silver Moonlight Tea"
+              "title": "Laning Phase"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -185,12 +170,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "61f623c1c955d27a",
+  "active": "ad89760b22aeca4b",
   "lastOpenFiles": [
-    "League of legends/Cycling.md",
     "Wanderstop/Silver Moonlight Tea.md",
+    "League of legends/Laning Phase.md",
+    "League of legends/Cycling.md",
     "Wanderstop",
-    "League of legends/Untitled.md",
     "League of legends/Competitive pick guide.md",
     "index.md",
     "Blue Palace/index.md",
