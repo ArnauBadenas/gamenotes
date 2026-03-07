@@ -71,3 +71,7 @@ The more defensive items you buy, the lower your "agency" or impact on the game.
 - **Mejai’s Soulstealer:** Only buy it if you are certain you can keep stacks alive. It pairs well with defensive items because they help protect your stacks.
 - **The "Rich" Path:** If you are extremely ahead with a 10-stack Dark Seal, you can occasionally buy **Deathcap second**.
 - **Aggression Rule:** Build as aggressively as possible without dying. Every point spent on defense reduces your ability to carry the game.
+
+
+## REFERENCES
+https://www.youtube.com/watch?v=tCFomdnso3c&t=595s
