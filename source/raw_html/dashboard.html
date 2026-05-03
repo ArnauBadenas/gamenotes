@@ -44,9 +44,9 @@
   /* Search bar */
   .search-section { margin-bottom: 2.5rem; }
   .search-label { font-family: var(--font-head); font-size: 11px; font-weight: 500; color: var(--text3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
-  .search-row { display: flex; gap: 10px; align-items: center; }
+  .search-row { display: flex; gap: 10px; align-items: center; margin-bottom: 1.25rem; }
   .search-row input {
-    flex: 1; max-width: 360px;
+    flex: 1; max-width: 400px;
     background: var(--bg2); border: 0.5px solid var(--border2);
     border-radius: var(--radius-sm); padding: 10px 14px;
     font-family: var(--font-head); font-size: 15px; color: var(--text);
@@ -54,6 +54,23 @@
   }
   .search-row input::placeholder { color: var(--text3); }
   .search-row input:focus { border-color: var(--accent); }
+  /* Champion grid */
+  .champ-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 8px; margin-bottom: 2rem; }
+  .champ-tile {
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+    padding: 8px 4px; border-radius: var(--radius-sm); cursor: pointer;
+    border: 0.5px solid transparent; transition: background 0.12s, border-color 0.12s;
+  }
+  .champ-tile:hover { background: var(--bg2); border-color: var(--border); }
+  .champ-tile.selected { background: var(--bg2); border-color: var(--accent); }
+  .champ-tile img { width: 48px; height: 48px; border-radius: 6px; object-fit: cover; display: block; }
+  .champ-tile span { font-family: var(--font-head); font-size: 10px; color: var(--text3); text-align: center; line-height: 1.3; word-break: break-word; }
+  .champ-tile:hover span, .champ-tile.selected span { color: var(--text2); }
+  .champ-grid-empty { font-size: 13px; color: var(--text3); padding: 1rem 0; }
+  /* Back button */
+  .back-btn { display: none; align-items: center; gap: 8px; background: none; border: none; font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); cursor: pointer; padding: 0; margin-bottom: 1.5rem; transition: color 0.15s; }
+  .back-btn:hover { color: var(--text2); }
+  .back-btn .arrow { font-size: 13px; }
   .search-row button {
     background: var(--accent); color: #0d0d0f;
     border: none; border-radius: var(--radius-sm);
@@ -162,13 +179,17 @@
   </div>
 </div>
 
-<section class="search-section">
+<section class="search-section" id="search-section">
   <label class="search-label" for="champ-input">Champion</label>
   <div class="search-row">
-    <input type="text" id="champ-input" placeholder="e.g. Syndra, Aurora, MissFortune" autocomplete="off" />
-    <button onclick="loadChampion()">Load</button>
+    <input type="text" id="champ-input" placeholder="Filtrar campeón..." autocomplete="off" />
   </div>
+  <div class="champ-grid" id="champ-grid"><span class="champ-grid-empty">Cargando campeones...</span></div>
 </section>
+
+<button class="back-btn" id="back-btn" onclick="showGallery()">
+  <span class="arrow">←</span> Todos los campeones
+</button>
 
 <div id="champ-strip">
   <img id="champ-icon" src="" alt="" />
@@ -196,8 +217,9 @@ async function getVersion() {
   return ddVersion;
 }
 
-async function loadChampion() {
-  const raw = document.getElementById("champ-input").value.trim();
+function loadChampion() { loadChampionByName(null); }
+async function loadChampionByName(rawName) {
+  const raw = rawName || document.getElementById("champ-input").value.trim();
   if (!raw) return;
   const name = raw.charAt(0).toUpperCase() + raw.slice(1);
   setStatus("Loading...");
@@ -323,9 +345,62 @@ function setStatus(msg) {
   document.getElementById("status").textContent = msg;
 }
 
-document.getElementById("champ-input").addEventListener("keydown", e => {
-  if (e.key === "Enter") loadChampion();
+// Champion gallery
+let allChampions = [];
+let selectedChamp = null;
+
+async function initGallery() {
+  const version = await getVersion();
+  const res = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`);
+  const data = await res.json();
+  allChampions = Object.values(data.data).map(c => ({ id: c.id, name: c.name }));
+  allChampions.sort((a, b) => a.name.localeCompare(b.name));
+  renderGallery("");
+}
+
+function renderGallery(filter) {
+  const grid = document.getElementById("champ-grid");
+  const version = ddVersion;
+  const filtered = filter
+    ? allChampions.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()))
+    : allChampions;
+  if (!filtered.length) {
+    grid.innerHTML = '<span class="champ-grid-empty">No se encontró ningún campeón.</span>';
+    return;
+  }
+  grid.innerHTML = filtered.map(c =>
+    `<div class="champ-tile${selectedChamp === c.id ? " selected" : ""}" onclick="selectChamp('${c.name}', '${c.id}')" title="${c.name}">
+      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${c.id}.png" alt="${c.name}" loading="lazy" />
+      <span>${c.name}</span>
+    </div>`
+  ).join("");
+}
+
+function selectChamp(name, id) {
+  selectedChamp = id;
+  document.getElementById("champ-input").value = name;
+  document.getElementById("search-section").style.display = "none";
+  document.getElementById("back-btn").style.display = "flex";
+  loadChampionByName(name);
+}
+
+function showGallery() {
+  document.getElementById("search-section").style.display = "block";
+  document.getElementById("back-btn").style.display = "none";
+  document.getElementById("champ-strip").style.display = "none";
+  document.getElementById("version-tag").textContent = "";
+  document.getElementById("grid").style.display = "none";
+  document.getElementById("status").textContent = "";
+  document.getElementById("champ-input").value = "";
+  selectedChamp = null;
+  renderGallery("");
+}
+
+document.getElementById("champ-input").addEventListener("input", e => {
+  renderGallery(e.target.value);
 });
+
+initGallery();
 
 const CHECKLIST_URL = `${RAW_BASE}/League%20of%20legends/Preguntas%20que%20hacerse%20cada%20partida.md`;
 let checklistLoaded = false;
