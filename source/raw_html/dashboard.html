@@ -123,6 +123,25 @@
   .open-link:hover { color: var(--accent2); }
 
   .version-tag { font-size: 11px; color: var(--text3); margin-bottom: 1.5rem; font-family: var(--font-head); }
+  /* Checklist panel */
+  .checklist-panel { margin-bottom: 2rem; border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .checklist-toggle { width: 100%; background: var(--bg2); border: none; padding: 0.85rem 1.25rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text3); transition: color 0.15s; }
+  .checklist-toggle:hover { color: var(--text2); }
+  .checklist-toggle .arrow { font-size: 10px; transition: transform 0.2s; display: inline-block; }
+  .checklist-toggle.open .arrow { transform: rotate(90deg); }
+  .checklist-body { display: none; padding: 1rem 1.25rem; background: var(--bg2); border-top: 0.5px solid var(--border); }
+  .checklist-body.open { display: block; }
+  .checklist-body .note-wrap { font-size: 13px; }
+  .checklist-body .note-wrap ul { list-style: none; padding: 0; }
+  .checklist-body .note-wrap li { display: flex; align-items: flex-start; gap: 10px; padding: 5px 0; border-bottom: 0.5px solid var(--border); color: var(--text2); line-height: 1.5; }
+  .checklist-body .note-wrap li:last-child { border-bottom: none; }
+  .checklist-body .note-wrap li input[type=checkbox] { margin-top: 3px; accent-color: var(--accent); flex-shrink: 0; cursor: pointer; }
+  .checklist-body .note-wrap li.checked { color: var(--text3); text-decoration: line-through; }
+  .checklist-body .note-wrap h1,.checklist-body .note-wrap h2,.checklist-body .note-wrap h3 { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin: 12px 0 4px; }
+  .checklist-body .note-wrap h1:first-child,.checklist-body .note-wrap h2:first-child,.checklist-body .note-wrap h3:first-child { margin-top: 0; }
+  .reset-btn { margin-top: 10px; background: none; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 5px 12px; font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); cursor: pointer; transition: color 0.15s, border-color 0.15s; }
+  .reset-btn:hover { color: var(--text2); border-color: var(--text3); }
+
 </style>
 </head>
 <body>
@@ -130,6 +149,18 @@
 <header class="site-header">
   <span class="site-title"><a href="https://arnaubadenas.github.io/gamenotes/">Haru's game notes</a> / Champion dashboard</span>
 </header>
+
+
+<div class="checklist-panel" id="checklist-panel">
+  <button class="checklist-toggle" id="checklist-toggle" onclick="toggleChecklist()">
+    <span>Preguntas que hacerse cada partida</span>
+    <span class="arrow">▶</span>
+  </button>
+  <div class="checklist-body" id="checklist-body">
+    <div id="checklist-content" class="note-wrap"><span style="color:var(--text3);font-size:12px;">Cargando...</span></div>
+    <button class="reset-btn" onclick="resetChecklist()">Reiniciar</button>
+  </div>
+</div>
 
 <section class="search-section">
   <label class="search-label" for="champ-input">Champion</label>
@@ -295,6 +326,67 @@ function setStatus(msg) {
 document.getElementById("champ-input").addEventListener("keydown", e => {
   if (e.key === "Enter") loadChampion();
 });
+
+const CHECKLIST_URL = `${RAW_BASE}/League%20of%20legends/Preguntas%20que%20hacerse%20cada%20partida.md`;
+let checklistLoaded = false;
+
+function toggleChecklist() {
+  const toggle = document.getElementById("checklist-toggle");
+  const body = document.getElementById("checklist-body");
+  const isOpen = body.classList.contains("open");
+  body.classList.toggle("open", !isOpen);
+  toggle.classList.toggle("open", !isOpen);
+  if (!isOpen && !checklistLoaded) loadChecklist();
+}
+
+async function loadChecklist() {
+  try {
+    const r = await fetch(CHECKLIST_URL);
+    if (!r.ok) throw new Error("not found");
+    let md = await r.text();
+    md = md.replace(/^---[\s\S]*?---\n/, "");
+    md = md.replace(/!\[\[.*?\]\]/g, "");
+    md = md.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, t, l) => l || t);
+    // convert - [ ] and - [x] to checkboxes
+    md = md.replace(/^- \[x\] (.+)$/gm, '<li class="checked"><input type="checkbox" checked onchange="onCheck(this)"> $1</li>');
+    md = md.replace(/^- \[ \] (.+)$/gm, '<li><input type="checkbox" onchange="onCheck(this)"> $1</li>');
+    const html = marked.parse(md);
+    document.getElementById("checklist-content").innerHTML = html;
+    restoreChecks();
+    checklistLoaded = true;
+  } catch(e) {
+    document.getElementById("checklist-content").innerHTML = '<span style="color:var(--text3);font-size:12px;">No se pudo cargar la nota.</span>';
+  }
+}
+
+function onCheck(cb) {
+  const li = cb.parentElement;
+  li.classList.toggle("checked", cb.checked);
+  saveChecks();
+}
+
+function saveChecks() {
+  const boxes = document.querySelectorAll("#checklist-content input[type=checkbox]");
+  const state = Array.from(boxes).map(b => b.checked);
+  sessionStorage.setItem("checklist", JSON.stringify(state));
+}
+
+function restoreChecks() {
+  const saved = sessionStorage.getItem("checklist");
+  if (!saved) return;
+  const state = JSON.parse(saved);
+  const boxes = document.querySelectorAll("#checklist-content input[type=checkbox]");
+  boxes.forEach((b, i) => {
+    if (state[i]) { b.checked = true; b.parentElement.classList.add("checked"); }
+  });
+}
+
+function resetChecklist() {
+  sessionStorage.removeItem("checklist");
+  const boxes = document.querySelectorAll("#checklist-content input[type=checkbox]");
+  boxes.forEach(b => { b.checked = false; b.parentElement.classList.remove("checked"); });
+}
+
 </script>
 </body>
 </html>
