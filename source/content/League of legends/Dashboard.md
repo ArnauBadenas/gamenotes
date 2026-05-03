@@ -1,54 +1,368 @@
 ---
 actual_campeon: Syndra
 ---
-```dataviewjs
-const actual = dv.current().actual_campeon;
+  
 
-if (!actual) {
-    dv.paragraph("⚠️ Por favor, define la propiedad 'actual_campeon' en el Frontmatter de esta nota.");
-} else {
-    // Título Principal
-    dv.header(1, "🎮 Centro de Mando: " + actual);
+<style>
 
-    // --- 1. CHECKLIST ESPECÍFICA ---
-    const championNote = dv.page(actual);
-    
-    dv.header(2, "✅ Checklist: " + actual);
-    if (championNote) {
-        const tasks = championNote.file.tasks.filter(t => !t.completed);
-        if (tasks.length > 0) {
-            dv.taskList(tasks, false);
-        } else {
-            dv.paragraph("No hay tareas pendientes para este campeón.");
-        }
-    } else {
-        dv.paragraph("❌ Nota de campeón no encontrada: " + actual);
-    }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    // Línea separadora
-    dv.el("hr", "");
+body { font-family: var(--font-sans); }
 
-    // --- 2. CHECKLIST GENERAL ---
-    dv.header(2, "🧠 Fundamentos (Platino)");
-    const general = dv.page("Informe de mejora");
-    
-    if (general) {
-        const genTasks = general.file.tasks.filter(t => !t.completed);
-        if (genTasks.length > 0) {
-            dv.taskList(genTasks, false);
-        } else {
-            dv.paragraph("No hay fundamentos pendientes.");
-        }
-    } else {
-        dv.paragraph("⚠️ Nota 'Checklist General' no encontrada.");
-    }
+.dashboard { padding: 1rem 0; }
 
-    // Línea separadora
-    dv.el("hr", "");
+.header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; }
 
-    // --- 3. ENLACE AL INFORME ---
-    dv.paragraph("🔗 **Acceso al informe completo:** " + (championNote ? championNote.file.link : "No disponible"));
+.header h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+
+.search-row { display: flex; gap: 8px; align-items: center; flex: 1; min-width: 200px; }
+
+.champion-icon { width: 56px; height: 56px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); object-fit: cover; background: var(--color-background-secondary); }
+
+input[type=text] { flex: 1; }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+
+.card-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
+
+.spell { padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+
+.spell:last-child { border-bottom: none; }
+
+.spell-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+
+.spell-key { width: 24px; height: 24px; border-radius: 4px; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-secondary); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: var(--color-text-primary); flex-shrink: 0; }
+
+.spell-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+
+.spell-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 4px; }
+
+.spell-meta { font-size: 12px; color: var(--color-text-tertiary); }
+
+.note-content { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; }
+
+.note-content h1, .note-content h2, .note-content h3 { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 12px 0 4px; }
+
+.note-content p { margin-bottom: 8px; }
+
+.note-content ul, .note-content ol { padding-left: 1.2rem; margin-bottom: 8px; }
+
+.note-content li { margin-bottom: 3px; }
+
+.note-content a { color: var(--color-text-info); text-decoration: none; }
+
+.note-content code { background: var(--color-background-secondary); padding: 1px 4px; border-radius: 3px; font-family: var(--font-mono); font-size: 12px; }
+
+.status { font-size: 13px; color: var(--color-text-tertiary); padding: 1rem 0; }
+
+.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border-tertiary); }
+
+.badge.ok { background: var(--color-background-success); color: var(--color-text-success); border-color: var(--color-border-success); }
+
+.badge.err { background: var(--color-background-danger); color: var(--color-text-danger); border-color: var(--color-border-danger); }
+
+.version { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; }
+
+</style>
+
+  
+
+<div class="dashboard">
+
+  <h2 style="font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:1rem;">Champion dashboard</h2>
+
+  <div class="header">
+
+    <img id="champ-icon" class="champion-icon" src="" alt="" style="display:none;" />
+
+    <div class="search-row">
+
+      <input type="text" id="champ-input" placeholder="Champion name (e.g. Syndra)" />
+
+      <button id="load-btn" onclick="loadChampion()">Load ↗</button>
+
+    </div>
+
+  </div>
+
+  <div id="version-line" class="version"></div>
+
+  <div id="status" class="status">Enter a champion name to load their data.</div>
+
+  <div id="grid" class="grid" style="display:none;"></div>
+
+</div>
+
+  
+
+<script>
+
+const QUARTZ_BASE = "https://arnaubadenas.github.io/gamenotes";
+
+const NOTE_PATH = "League-of-legends";
+
+let ddVersion = null;
+
+  
+
+async function getVersion() {
+
+  if (ddVersion) return ddVersion;
+
+  const r = await fetch("https://ddragon.leagueoflegends.com/api/versions.json");
+
+  const v = await r.json();
+
+  ddVersion = v[0];
+
+  return ddVersion;
+
 }
 
-```
+  
 
+async function loadChampion() {
+
+  const raw = document.getElementById("champ-input").value.trim();
+
+  if (!raw) return;
+
+  const name = raw.charAt(0).toUpperCase() + raw.slice(1);
+
+  setStatus("Loading...");
+
+  document.getElementById("grid").style.display = "none";
+
+  document.getElementById("champ-icon").style.display = "none";
+
+  
+
+  const [spellData, noteData] = await Promise.allSettled([
+
+    fetchSpells(name),
+
+    fetchNote(name)
+
+  ]);
+
+  
+
+  if (spellData.status === "rejected" || spellData.value?.error) {
+
+    setStatus(`Could not find champion "${name}". Check the internal DDragon name (e.g. MissFortune, MonkeyKing).`);
+
+    return;
+
+  }
+
+  
+
+  const { spells, passive, version } = spellData.value;
+
+  document.getElementById("version-line").textContent = `DDragon ${version}`;
+
+  
+
+  const iconEl = document.getElementById("champ-icon");
+
+  iconEl.src = `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${name}.png`;
+
+  iconEl.style.display = "block";
+
+  
+
+  const grid = document.getElementById("grid");
+
+  grid.innerHTML = "";
+
+  grid.style.display = "grid";
+
+  setStatus("");
+
+  
+
+  grid.appendChild(buildAbilitiesCard(passive, spells));
+
+  grid.appendChild(buildNoteCard(noteData, name));
+
+}
+
+  
+
+async function fetchSpells(name) {
+
+  const version = await getVersion();
+
+  const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${name}.json`;
+
+  const r = await fetch(url);
+
+  if (!r.ok) return { error: true };
+
+  const data = await r.json();
+
+  const champ = data.data[name];
+
+  return { spells: champ.spells, passive: champ.passive, version };
+
+}
+
+  
+
+async function fetchNote(name) {
+
+  const url = `${QUARTZ_BASE}/${NOTE_PATH}/${name}`;
+
+  try {
+
+    const r = await fetch(url);
+
+    if (!r.ok) return null;
+
+    const html = await r.text();
+
+    const parser = new DOMParser();
+
+    const doc = parser.parseFromString(html, "text/html");
+
+    const article = doc.querySelector("article") || doc.querySelector(".page-content") || doc.querySelector("main");
+
+    if (!article) return null;
+
+    ["script","style","nav",".sidebar",".graph-container",".backlinks","footer"].forEach(sel => {
+
+      article.querySelectorAll(sel).forEach(el => el.remove());
+
+    });
+
+    return article.innerHTML;
+
+  } catch(e) { return null; }
+
+}
+
+  
+
+function buildAbilitiesCard(passive, spells) {
+
+  const card = document.createElement("div");
+
+  card.className = "card";
+
+  card.innerHTML = `<div class="card-title">Abilities</div>`;
+
+  const keys = ["Q","W","E","R"];
+
+  const allSpells = [
+
+    { key: "P", name: passive.name, desc: passive.description, cooldown: null, cost: null },
+
+    ...spells.map((s,i) => ({ key: keys[i], name: s.name, desc: s.description, cooldown: s.cooldownBurn, cost: s.costBurn }))
+
+  ];
+
+  allSpells.forEach(s => {
+
+    const div = document.createElement("div");
+
+    div.className = "spell";
+
+    const desc = s.desc.replace(/<[^>]*>/g, "");
+
+    const meta = s.cooldown ? `CD: ${s.cooldown}s &nbsp;·&nbsp; Cost: ${s.cost}` : "";
+
+    div.innerHTML = `
+
+      <div class="spell-header">
+
+        <div class="spell-key">${s.key}</div>
+
+        <span class="spell-name">${s.name}</span>
+
+      </div>
+
+      <div class="spell-desc">${desc}</div>
+
+      ${meta ? `<div class="spell-meta">${meta}</div>` : ""}
+
+    `;
+
+    card.appendChild(div);
+
+  });
+
+  return card;
+
+}
+
+  
+
+function buildNoteCard(noteHtml, name) {
+
+  const card = document.createElement("div");
+
+  card.className = "card";
+
+  const url = `${QUARTZ_BASE}/${NOTE_PATH}/${name}`;
+
+  if (noteHtml) {
+
+    card.innerHTML = `
+
+      <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
+
+        <span>Your note</span>
+
+        <span class="badge ok">found</span>
+
+      </div>
+
+      <div class="note-content">${noteHtml}</div>
+
+      <div style="margin-top:12px;"><a href="${url}" style="font-size:12px;color:var(--color-text-info);">Open on Quartz →</a></div>
+
+    `;
+
+  } else {
+
+    card.innerHTML = `
+
+      <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
+
+        <span>Your note</span>
+
+        <span class="badge err">not found</span>
+
+      </div>
+
+      <p style="font-size:13px;color:var(--color-text-secondary);margin-top:8px;">No note found at <code>${NOTE_PATH}/${name}</code>.<br><br>Create a note in Obsidian named <strong>${name}</strong> inside your <code>League-of-legends</code> folder and publish it to Quartz.</p>
+
+    `;
+
+  }
+
+  return card;
+
+}
+
+  
+
+function setStatus(msg) {
+
+  document.getElementById("status").textContent = msg;
+
+}
+
+  
+
+document.getElementById("champ-input").addEventListener("keydown", e => {
+
+  if (e.key === "Enter") loadChampion();
+
+});
+
+</script>
