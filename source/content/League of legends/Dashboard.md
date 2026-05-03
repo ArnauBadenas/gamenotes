@@ -7,65 +7,63 @@ actual_campeon: Syndra
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body { font-family: var(--font-sans); }
+.dashboard { padding: 1rem 0; font-family: var(--font-sans); }
 
-.dashboard { padding: 1rem 0; }
+.header { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; flex-wrap: wrap; }
 
-.header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.champ-icon { width: 56px; height: 56px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); object-fit: cover; background: var(--color-background-secondary); flex-shrink: 0; }
 
-.header h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
-
-.search-row { display: flex; gap: 8px; align-items: center; flex: 1; min-width: 200px; }
-
-.champion-icon { width: 56px; height: 56px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); object-fit: cover; background: var(--color-background-secondary); }
-
-input[type=text] { flex: 1; }
+.search-row { display: flex; gap: 8px; align-items: center; flex: 1; min-width: 180px; }
 
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
 @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
 
-.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; min-width: 0; }
 
-.card-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
+.card-title { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
 
-.spell { padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.spell { padding: 9px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
 
-.spell:last-child { border-bottom: none; }
+.spell:last-child { border-bottom: none; padding-bottom: 0; }
 
-.spell-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.spell-header { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
 
-.spell-key { width: 24px; height: 24px; border-radius: 4px; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-secondary); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: var(--color-text-primary); flex-shrink: 0; }
+.spell-key { width: 22px; height: 22px; border-radius: 4px; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-secondary); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--color-text-primary); flex-shrink: 0; }
 
-.spell-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+.spell-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
 
-.spell-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 4px; }
+.spell-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 3px; }
 
-.spell-meta { font-size: 12px; color: var(--color-text-tertiary); }
+.spell-meta { font-size: 11px; color: var(--color-text-tertiary); }
 
-.note-content { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; }
+.note-wrap { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; overflow: hidden; }
 
-.note-content h1, .note-content h2, .note-content h3 { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 12px 0 4px; }
+.note-wrap h1, .note-wrap h2, .note-wrap h3, .note-wrap h4 { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin: 10px 0 3px; }
 
-.note-content p { margin-bottom: 8px; }
+.note-wrap p { margin-bottom: 6px; }
 
-.note-content ul, .note-content ol { padding-left: 1.2rem; margin-bottom: 8px; }
+.note-wrap ul, .note-wrap ol { padding-left: 1.1rem; margin-bottom: 6px; }
 
-.note-content li { margin-bottom: 3px; }
+.note-wrap li { margin-bottom: 2px; }
 
-.note-content a { color: var(--color-text-info); text-decoration: none; }
+.note-wrap hr { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 8px 0; }
 
-.note-content code { background: var(--color-background-secondary); padding: 1px 4px; border-radius: 3px; font-family: var(--font-mono); font-size: 12px; }
+.note-wrap a { color: var(--color-text-info); text-decoration: none; }
 
-.status { font-size: 13px; color: var(--color-text-tertiary); padding: 1rem 0; }
+.note-wrap blockquote { border-left: 2px solid var(--color-border-secondary); padding-left: 8px; color: var(--color-text-tertiary); margin: 6px 0; }
 
-.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border-tertiary); }
+.badge { font-size: 11px; padding: 2px 7px; border-radius: var(--border-radius-md); }
 
-.badge.ok { background: var(--color-background-success); color: var(--color-text-success); border-color: var(--color-border-success); }
+.badge-ok { background: var(--color-background-success); color: var(--color-text-success); }
 
-.badge.err { background: var(--color-background-danger); color: var(--color-text-danger); border-color: var(--color-border-danger); }
+.badge-err { background: var(--color-background-danger); color: var(--color-text-danger); }
 
-.version { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; }
+.status { font-size: 13px; color: var(--color-text-tertiary); padding: 0.5rem 0; }
+
+.version { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 1rem; }
+
+.open-link { font-size: 12px; color: var(--color-text-info); text-decoration: none; display: inline-block; margin-top: 10px; }
 
 </style>
 
@@ -77,7 +75,7 @@ input[type=text] { flex: 1; }
 
   <div class="header">
 
-    <img id="champ-icon" class="champion-icon" src="" alt="" style="display:none;" />
+    <img id="champ-icon" class="champ-icon" src="" alt="" style="display:none;" />
 
     <div class="search-row">
 
@@ -91,7 +89,7 @@ input[type=text] { flex: 1; }
 
   <div id="version-line" class="version"></div>
 
-  <div id="status" class="status">Enter a champion name to load their data.</div>
+  <div id="status" class="status">Enter a champion name to get started.</div>
 
   <div id="grid" class="grid" style="display:none;"></div>
 
@@ -103,7 +101,7 @@ input[type=text] { flex: 1; }
 
 const QUARTZ_BASE = "https://arnaubadenas.github.io/gamenotes";
 
-const NOTE_PATH = "League-of-legends";
+const NOTE_PATH = "League-of-legends/Champions";
 
 let ddVersion = null;
 
@@ -139,9 +137,11 @@ async function loadChampion() {
 
   document.getElementById("champ-icon").style.display = "none";
 
+  document.getElementById("version-line").textContent = "";
+
   
 
-  const [spellData, noteData] = await Promise.allSettled([
+  const [spellResult, noteResult] = await Promise.allSettled([
 
     fetchSpells(name),
 
@@ -151,9 +151,9 @@ async function loadChampion() {
 
   
 
-  if (spellData.status === "rejected" || spellData.value?.error) {
+  if (spellResult.status === "rejected" || spellResult.value?.error) {
 
-    setStatus(`Could not find champion "${name}". Check the internal DDragon name (e.g. MissFortune, MonkeyKing).`);
+    setStatus(`Could not find "${name}" in DDragon. Check spelling or try the internal name (e.g. MissFortune, MonkeyKing).`);
 
     return;
 
@@ -161,19 +161,23 @@ async function loadChampion() {
 
   
 
-  const { spells, passive, version } = spellData.value;
+  const { spells, passive, version } = spellResult.value;
 
   document.getElementById("version-line").textContent = `DDragon ${version}`;
 
   
 
-  const iconEl = document.getElementById("champ-icon");
+  const icon = document.getElementById("champ-icon");
 
-  iconEl.src = `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${name}.png`;
+  icon.src = `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${name}.png`;
 
-  iconEl.style.display = "block";
+  icon.alt = name;
+
+  icon.style.display = "block";
 
   
+
+  setStatus("");
 
   const grid = document.getElementById("grid");
 
@@ -181,13 +185,11 @@ async function loadChampion() {
 
   grid.style.display = "grid";
 
-  setStatus("");
-
   
 
   grid.appendChild(buildAbilitiesCard(passive, spells));
 
-  grid.appendChild(buildNoteCard(noteData, name));
+  grid.appendChild(buildNoteCard(noteResult.status === "fulfilled" ? noteResult.value : null, name));
 
 }
 
@@ -197,9 +199,7 @@ async function fetchSpells(name) {
 
   const version = await getVersion();
 
-  const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${name}.json`;
-
-  const r = await fetch(url);
+  const r = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${name}.json`);
 
   if (!r.ok) return { error: true };
 
@@ -217,31 +217,37 @@ async function fetchNote(name) {
 
   const url = `${QUARTZ_BASE}/${NOTE_PATH}/${name}`;
 
-  try {
+  const r = await fetch(url);
 
-    const r = await fetch(url);
+  if (!r.ok) return null;
 
-    if (!r.ok) return null;
+  const html = await r.text();
 
-    const html = await r.text();
+  const parser = new DOMParser();
 
-    const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
 
-    const doc = parser.parseFromString(html, "text/html");
+  
 
-    const article = doc.querySelector("article") || doc.querySelector(".page-content") || doc.querySelector("main");
+  const article = doc.querySelector("article");
 
-    if (!article) return null;
+  if (!article) return null;
 
-    ["script","style","nav",".sidebar",".graph-container",".backlinks","footer"].forEach(sel => {
+  
 
-      article.querySelectorAll(sel).forEach(el => el.remove());
+  ["script","style","nav",".sidebar",".graph-container",".backlinks",
 
-    });
+   "footer",".page-footer",".toc",".table-of-contents",
 
-    return article.innerHTML;
+   ".quartz-toc", "aside"].forEach(sel => {
 
-  } catch(e) { return null; }
+    article.querySelectorAll(sel).forEach(el => el.remove());
+
+  });
+
+  
+
+  return article.innerHTML;
 
 }
 
@@ -257,25 +263,23 @@ function buildAbilitiesCard(passive, spells) {
 
   const keys = ["Q","W","E","R"];
 
-  const allSpells = [
+  const all = [
 
-    { key: "P", name: passive.name, desc: passive.description, cooldown: null, cost: null },
+    { key: "P", name: passive.name, desc: passive.description, cd: null, cost: null },
 
-    ...spells.map((s,i) => ({ key: keys[i], name: s.name, desc: s.description, cooldown: s.cooldownBurn, cost: s.costBurn }))
+    ...spells.map((s,i) => ({ key: keys[i], name: s.name, desc: s.description, cd: s.cooldownBurn, cost: s.costBurn }))
 
   ];
 
-  allSpells.forEach(s => {
+  all.forEach(s => {
 
-    const div = document.createElement("div");
+    const el = document.createElement("div");
 
-    div.className = "spell";
+    el.className = "spell";
 
     const desc = s.desc.replace(/<[^>]*>/g, "");
 
-    const meta = s.cooldown ? `CD: ${s.cooldown}s &nbsp;·&nbsp; Cost: ${s.cost}` : "";
-
-    div.innerHTML = `
+    el.innerHTML = `
 
       <div class="spell-header">
 
@@ -287,11 +291,11 @@ function buildAbilitiesCard(passive, spells) {
 
       <div class="spell-desc">${desc}</div>
 
-      ${meta ? `<div class="spell-meta">${meta}</div>` : ""}
+      ${s.cd ? `<div class="spell-meta">CD: ${s.cd}s &nbsp;·&nbsp; Cost: ${s.cost}</div>` : ""}
 
     `;
 
-    card.appendChild(div);
+    card.appendChild(el);
 
   });
 
@@ -303,45 +307,55 @@ function buildAbilitiesCard(passive, spells) {
 
 function buildNoteCard(noteHtml, name) {
 
+  const url = `${QUARTZ_BASE}/${NOTE_PATH}/${name}`;
+
   const card = document.createElement("div");
 
   card.className = "card";
 
-  const url = `${QUARTZ_BASE}/${NOTE_PATH}/${name}`;
+  const titleDiv = document.createElement("div");
+
+  titleDiv.className = "card-title";
+
+  
 
   if (noteHtml) {
 
-    card.innerHTML = `
+    titleDiv.innerHTML = `<span>Your note</span><span class="badge badge-ok">found</span>`;
 
-      <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
+    card.appendChild(titleDiv);
 
-        <span>Your note</span>
+    const wrap = document.createElement("div");
 
-        <span class="badge ok">found</span>
+    wrap.className = "note-wrap";
 
-      </div>
+    wrap.innerHTML = noteHtml;
 
-      <div class="note-content">${noteHtml}</div>
+    card.appendChild(wrap);
 
-      <div style="margin-top:12px;"><a href="${url}" style="font-size:12px;color:var(--color-text-info);">Open on Quartz →</a></div>
+    const link = document.createElement("a");
 
-    `;
+    link.className = "open-link";
+
+    link.href = url;
+
+    link.textContent = "Open on Quartz →";
+
+    card.appendChild(link);
 
   } else {
 
-    card.innerHTML = `
+    titleDiv.innerHTML = `<span>Your note</span><span class="badge badge-err">not found</span>`;
 
-      <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
+    card.appendChild(titleDiv);
 
-        <span>Your note</span>
+    const msg = document.createElement("p");
 
-        <span class="badge err">not found</span>
+    msg.style.cssText = "font-size:13px;color:var(--color-text-secondary);margin-top:8px;line-height:1.6;";
 
-      </div>
+    msg.innerHTML = `No note found at <code style="font-family:var(--font-mono);font-size:11px;background:var(--color-background-secondary);padding:1px 4px;border-radius:3px;">${NOTE_PATH}/${name}</code>.<br><br>Create a note named <strong>${name}</strong> in your <code style="font-family:var(--font-mono);font-size:11px;background:var(--color-background-secondary);padding:1px 4px;border-radius:3px;">League-of-legends/Champions</code> folder and publish it.`;
 
-      <p style="font-size:13px;color:var(--color-text-secondary);margin-top:8px;">No note found at <code>${NOTE_PATH}/${name}</code>.<br><br>Create a note in Obsidian named <strong>${name}</strong> inside your <code>League-of-legends</code> folder and publish it to Quartz.</p>
-
-    `;
+    card.appendChild(msg);
 
   }
 
