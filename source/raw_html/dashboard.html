@@ -156,7 +156,7 @@ const QUARTZ_BASE = "https://arnaubadenas.github.io/gamenotes";
 const RAW_BASE = "https://raw.githubusercontent.com/ArnauBadenas/gamenotes/main/source/content";
 const NOTE_PATH = "League%20of%20legends/Champions";
 const NOTE_PATH_QUARTZ = "League-of-legends/Champions";
-
+let ddVersion = null;
 
 async function getVersion() {
   if (ddVersion) return ddVersion;
@@ -180,16 +180,16 @@ async function loadChampion() {
   ]);
 
   if (spellResult.status === "rejected" || spellResult.value?.error) {
-    setStatus(`Could not find "${name}" in DDragon. Check spelling — use internal names like MissFortune or MonkeyKing.`);
+    setStatus(`Could not find "${name}" — check the spelling and try again.`);
     return;
   }
 
-  const { spells, passive, version, title, tags } = spellResult.value;
+  const { spells, passive, version, title, tags, internalId } = spellResult.value;
   document.getElementById("version-tag").textContent = `DDragon ${version}`;
 
   const strip = document.getElementById("champ-strip");
-  document.getElementById("champ-icon").src = `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${name}.png`;
-  document.getElementById("champ-icon").alt = name;
+  document.getElementById("champ-icon").src = `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${internalId}.png`;
+  document.getElementById("champ-icon").alt = title || name;
   document.getElementById("champ-name").textContent = title || name;
   document.getElementById("champ-meta").textContent = tags ? tags.join(" · ") : "";
   strip.style.display = "flex";
@@ -204,11 +204,20 @@ async function loadChampion() {
 
 async function fetchSpells(name) {
   const version = await getVersion();
-  const r = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${name}.json`);
+  const listRes = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`);
+  const listData = await listRes.json();
+  const champions = listData.data;
+  const query = name.toLowerCase().replace(/[^a-z]/g, "");
+  const internalId = Object.keys(champions).find(id =>
+    id.toLowerCase() === query ||
+    champions[id].name.toLowerCase().replace(/[^a-z]/g, "") === query
+  );
+  if (!internalId) return { error: true };
+  const r = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${internalId}.json`);
   if (!r.ok) return { error: true };
   const data = await r.json();
-  const champ = data.data[name];
-  return { spells: champ.spells, passive: champ.passive, version, title: champ.name, tags: champ.tags };
+  const champ = data.data[internalId];
+  return { spells: champ.spells, passive: champ.passive, version, title: champ.name, tags: champ.tags, internalId };
 }
 
 async function fetchNote(name) {

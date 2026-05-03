@@ -8,7 +8,15 @@ tags:
 **Categoría:** Hostigadora (Skirmisher) / Maga de Movilidad **Dificultad Operativa:** Alta (Dependiente de _spacing_ y _timing_)
 
 ---
+## Check-list de Maestría para Aurora
 
+- [ ] ¿He mantenido mi pasiva activa durante toda la pelea?
+    
+- [ ] ¿He usado la R para separar al equipo enemigo (frontline de midline)?
+    
+- [ ] ¿He guardado la W para esquivar una habilidad clave en lugar de usarla solo para acercarme?
+    
+- [ ] ¿Estoy abusando de mi velocidad de movimiento para hacer _spacing_ contra el melé rival?
 ## I. Tesis de Identidad: "La Tejedora del Caos"
 
 A diferencia de los magos de artillería o de control puro, la identidad de Aurora no reside en la potencia de un solo golpe, sino en la **interrupción del orden enemigo**.
@@ -95,15 +103,7 @@ Aurora es la reina de las **peleas en la jungla** y los **objetivos neutrales**.
 
 ---
 
-## VI. Check-list de Maestría para Aurora
 
-- [ ] ¿He mantenido mi pasiva activa durante toda la pelea?
-    
-- [ ] ¿He usado la R para separar al equipo enemigo (frontline de midline)?
-    
-- [ ] ¿He guardado la W para esquivar una habilidad clave en lugar de usarla solo para acercarme?
-    
-- [ ] ¿Estoy abusando de mi velocidad de movimiento para hacer _spacing_ contra el melé rival?
 
 ## REFERENCES
 https://docs.google.com/document/d/1Dj6vTl8Ezvt0lBy8p4oL0kYo_50AnZ1DaDZV2t1lrPQ/edit?tab=t.0#heading=h.a85kau2096os

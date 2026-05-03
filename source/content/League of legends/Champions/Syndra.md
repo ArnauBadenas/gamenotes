@@ -7,14 +7,17 @@ status: "[[main]]"
 ---
 
 
-![[Database/Syndra_Stats]]
-
 # 📑 Informe de Análisis Táctico: Syndra, la Soberana Oscura
 
 **Categoría:** Maga de Control / Maga de Ráfaga (Burst) **Dificultad Operativa:** Media-Alta (Dependiente de la gestión de esferas y _skillshots_)
 
 ---
+Check-list de Maestría para Syndra
 
+- [ ] ¿He guardado mi E para cancelar la iniciación clave del enemigo (ej. el salto de Jax o la E de Leona)?
+- [ ] ¿He acumulado suficientes fragmentos para mi pico de poder de los 40/100?
+- [ ] ¿He usado mi R no solo para matar, sino para dejar esferas en el suelo y meter un STUN de área con la E?
+- [ ] ¿Estoy respetando la distancia máxima de mis esferas para zonear al rival?
 ## I. Tesis de Identidad: "La Centinela de la Zona de Exclusión"
 
 La identidad de Syndra se define por la **jerarquía del rango**. Ella dicta quién puede acercarse y quién no. A diferencia de Aurora, Syndra no busca "jugar" con el enemigo; busca **invalidar su presencia**.
@@ -26,15 +29,10 @@ Syndra es una **"Maga de Escalado por Hitos"**. Su poder no es lineal, sino que 
 ## II. Análisis Dimensional de Habilidades (Utilidad y Evolución)
 
 ### 1. Pasiva - Trascendental (El Reloj del Poder)
-
 - **Mecánica:** Recolectar fragmentos (golpeando enemigos y subiendo niveles) mejora tus habilidades.
-    
 - **Utilidad Académica:** Define tus picos de poder (_powerspikes_).
-    
     - **40 fragmentos:** La Q gana una segunda carga (duplica tu capacidad de DPS y preparación de esferas).
-        
     - **100 fragmentos:** Ganas un **15% de AP total**. Aquí es donde pasas de ser una maga a ser una jefa de banda.
-        
 
 ### 2. Q - Esfera Oscura (La Unidad Básica de Control)
 
@@ -102,13 +100,3 @@ Syndra es la dueña absoluta de los **Asedios y la Defensa de Torre**.
     
 
 ---
-
-## VI. Check-list de Maestría para Syndra
-
-- [ ] ¿He guardado mi E para cancelar la iniciación clave del enemigo (ej. el salto de Jax o la E de Leona)?
-    
-- [ ] ¿He acumulado suficientes fragmentos para mi pico de poder de los 40/100?
-    
-- [ ] ¿He usado mi R no solo para matar, sino para dejar esferas en el suelo y meter un STUN de área con la E?
-    
-- [ ] ¿Estoy respetando la distancia máxima de mis esferas para zonear al rival?
