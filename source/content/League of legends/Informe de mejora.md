@@ -6,7 +6,7 @@
 
 ## 🏛️ Identidad de mis Campeones
 
-### [Syndra] – "La Centinela del Rango"
+### [[Syndra]] – "La Centinela del Rango"
 
 - **Rol:** Mago de Control / Ráfaga (Burst).
     
@@ -17,7 +17,7 @@
 - **Condición de Victoria:** Debilitar (poke) con Q y borrar a un objetivo prioritario con el combo E+R. Si mantienes el _spacing_, eres intocable.
     
 
-### [Aurora] – "La Tejedora del Caos"
+### [[Aurora]] – "La Tejedora del Caos"
 
 - **Rol:** Hostigadora (Skirmisher) / Asesina de Movilidad.
     
@@ -66,31 +66,31 @@ Para subir, debes mover tus habilidades por este embudo:
 
 > [!TIP] Revisa este esquema durante la pantalla de carga y en cada _back_ a base.
 
-### 1. Pantalla de Carga (Estrategia)
+###  - [ ] 1. Pantalla de Carga (Estrategia)
 
-- **¿Cuál es la amenaza principal?** Identifica la habilidad enemiga que te mata (ej. la R de Vi o la Q de Lux).
+- [ ] **¿Cuál es la amenaza principal?** Identifica la habilidad enemiga que te mata (ej. la R de Vi o la Q de Lux).
     
-- **¿Quién tiene el mejor escalado?** Si son ellos, debo ser agresivo. Si soy yo, juego a la economía.
+- [ ] **¿Quién tiene el mejor escalado?** Si son ellos, debo ser agresivo. Si soy yo, juego a la economía.
     
-- **¿Cuál es mi rol en las peleas de hoy?** ¿Borrar al ADC o proteger al mío?
-    
-
-### 2. Fase de Líneas (Ejecución)
-
-- **¿Dónde está el jungla enemigo?** (Tracking). Si no lo veo, no uso mi habilidad de huida ofensivamente.
-    
-- **¿Qué quiere hacer mi rival ahora mismo?** ¿Está guardando maná para un combo? ¿Está esperando a su jungla?
+- [ ] **¿Cuál es mi rol en las peleas de hoy?** ¿Borrar al ADC o proteger al mío?
     
 
-### 3. Mid/Late Game (Macro)
+### - [ ] 2. Fase de Líneas (Ejecución)
 
-- **¿Estoy en mi terreno o en el suyo?** (Ej. Con Syndra: ¿Estoy en un río sin visión? -> Error. Estoy fuera de mi identidad).
+- [ ] **¿Dónde está el jungla enemigo?** (Tracking). Si no lo veo, no uso mi habilidad de huida ofensivamente.
     
-- **¿Qué objetivo sigue?** No deambules. Si el Dragón sale en 1:30, prepara la visión y empuja la línea opuesta.
+- [ ] **¿Qué quiere hacer mi rival ahora mismo?** ¿Está guardando maná para un combo? ¿Está esperando a su jungla?
     
 
-### 4. Post-Partida (Análisis)
+### - [ ] 3. Mid/Late Game (Macro)
 
-- **¿He muerto por mecánica o por identidad?** ¿Fallé el click o estaba donde no debía estar?
+- [ ] **¿Estoy en mi terreno o en el suyo?** (Ej. Con Syndra: ¿Estoy en un río sin visión? -> Error. Estoy fuera de mi identidad).
     
-- **¿He perdido tiempo?** ¿Me quedé mirando una pelea que ya estaba perdida en lugar de farmear?
+- [ ] **¿Qué objetivo sigue?** No deambules. Si el Dragón sale en 1:30, prepara la visión y empuja la línea opuesta.
+    
+
+###  - [ ]4. Post-Partida (Análisis)
+
+- [ ] **¿He muerto por mecánica o por identidad?** ¿Fallé el click o estaba donde no debía estar?
+    
+- [ ] **¿He perdido tiempo?** ¿Me quedé mirando una pelea que ya estaba perdida en lugar de farmear?
