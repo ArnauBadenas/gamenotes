@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "League of legends/Champions/Taliyah.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "Taliyah"
             }
           }
         ]
@@ -173,10 +173,18 @@
   },
   "active": "ad89760b22aeca4b",
   "lastOpenFiles": [
-    "League of legends/Champions/Aurora.md",
+    "League of legends/Champions/Untitled.md",
+    "League of legends/Champions/Orianna.md",
+    "League of legends/Champions/Braum.md",
+    "League of legends/Champions/Jarvan IV.md",
+    "League of legends/Champions/Kindred.md",
+    "League of legends/Champions/Taliyah.md",
     "League of legends/Champions/Syndra.md",
-    "League of legends/Database/Syndra_Stats.md",
+    "League of legends/Champions/Tristana.md",
+    "note templates",
+    "League of legends/Champions/Aurora.md",
     "index.md",
+    "League of legends/Database/Syndra_Stats.md",
     "League of legends/Cycling.md",
     "League of legends/Dashboard.md",
     "League of legends/static/lol_champion_dashboard.html",
@@ -200,12 +208,6 @@
     "League of legends/index.md",
     "asdasd/index.md",
     "asdasd",
-    "asdasd",
-    "Test",
-    "Untitled.md",
-    "Hollow Knight/index.md",
-    "folder-listing.md",
-    "category-folder/Some note.md",
-    "category-folder/index.md"
+    "asdasd"
   ]
 }
