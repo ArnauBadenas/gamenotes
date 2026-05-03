@@ -1,24 +1,34 @@
-## 📋 Esquema: Preguntas de Sesión (Pre-partida y Durante)
+# 📑 Protocolo Táctico (Lectura Rápida)
 
-> [!TIP] Revisa este esquema durante la pantalla de carga y en cada _back_ a base.
+### 1. Pantalla de Carga (Estrategia)
 
-###  1. Pantalla de Carga (Estrategia)
+- **La Amenaza:** ¿Qué habilidad me mata? (Ej. Gancho de Thresh, R de Vi). No entres si no se ha gastado.
+    
+- **Reloj de Oro:** ¿Quién escala? ¿Presiono ahora o juego a la economía?
+    
+- **Mi Rol:** ¿Borro al carry rival o protejo al mío?
+    
 
-**¿Cuál es la amenaza principal?** Identifica la habilidad enemiga que te mata (ej. la R de Vi o la Q de Lux).
-**¿Quién tiene el mejor escalado?** Si son ellos, debo ser agresivo. Si soy yo, juego a la economía.
-**¿Cuál es mi rol en las peleas de hoy?** ¿Borrar al ADC o proteger al mío?
+### 2. Fase de Líneas (Micro)
 
-### 2. Fase de Líneas (Ejecución)
-
-**¿Dónde está el jungla enemigo?** (Tracking). Si no lo veo, no uso mi habilidad de huida ofensivamente.
- **¿Qué quiere hacer mi rival ahora mismo?** ¿Está guardando maná para un combo? ¿Está esperando a su jungla?
+- **Tracking:** ¿Dónde está el jungla? Si no lo veo, **no** uso mi _dash/stun_ ofensivo.
+    
+- **Intención:** ¿Por qué el rival se ha movido así? (¿Me está cebando o tiene miedo?).
+    
+- **Recursos:** ¿Tengo maná para el combo completo + escape?
+    
 
 ### 3. Mid/Late Game (Macro)
 
-¿Estoy en mi terreno o en el suyo?** (Ej. Con Syndra: ¿Estoy en un río sin visión? -> Error. Estoy fuera de mi identidad).
-¿Qué objetivo sigue?** No deambules. Si el Dragón sale en 1:30, prepara la visión y empuja la línea opuesta.
+- **Identidad de Zona:** ¿Estoy en mi terreno seguro? (Ej. Syndra necesita visión en los laterales).
+    
+- **Timer 1:30:** ¿Qué objetivo sale? Prepara visión y empuja la línea opuesta **ya**.
+    
+- **Win-Con:** ¿Quién es el más fuerte? Juega para él, no para ti.
+    
 
 ### 4. Post-Partida (Análisis)
 
-**¿He muerto por mecánica o por identidad?** ¿Fallé el click o estaba donde no debía estar?
-**¿He perdido tiempo?** ¿Me quedé mirando una pelea que ya estaba perdida en lugar de farmear?
+- **Fallo:** ¿Mecánica (fallé la tecla) o Identidad (no debía estar ahí)?
+    
+- **Costo de Oportunidad:** ¿Miré una pelea perdida en vez de farmear 2 oleadas?
