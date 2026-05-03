@@ -1,60 +1,162 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Champion Dashboard – Haru's Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-.dashboard { padding: 1rem 0; font-family: var(--font-sans); }
-.header { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; flex-wrap: wrap; }
-.champ-icon { width: 56px; height: 56px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); object-fit: cover; background: var(--color-background-secondary); flex-shrink: 0; }
-.search-row { display: flex; gap: 8px; align-items: center; flex: 1; min-width: 180px; }
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
-.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; min-width: 0; }
-.card-title { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
-.spell { padding: 9px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
-.spell:last-child { border-bottom: none; padding-bottom: 0; }
-.spell-header { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
-.spell-key { width: 22px; height: 22px; border-radius: 4px; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-secondary); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--color-text-primary); flex-shrink: 0; }
-.spell-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
-.spell-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 3px; }
-.spell-meta { font-size: 11px; color: var(--color-text-tertiary); }
-.note-wrap { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
-.note-wrap h1,.note-wrap h2 { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 12px 0 4px; }
-.note-wrap h3,.note-wrap h4 { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin: 10px 0 3px; }
-.note-wrap p { margin-bottom: 6px; }
-.note-wrap ul,.note-wrap ol { padding-left: 1.1rem; margin-bottom: 6px; }
-.note-wrap li { margin-bottom: 2px; }
-.note-wrap hr { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 8px 0; }
-.note-wrap a { color: var(--color-text-info); text-decoration: none; }
-.note-wrap blockquote { border-left: 2px solid var(--color-border-secondary); padding-left: 8px; color: var(--color-text-tertiary); margin: 6px 0; }
-.note-wrap strong { font-weight: 500; color: var(--color-text-primary); }
-.note-wrap code { font-family: var(--font-mono); font-size: 11px; background: var(--color-background-secondary); padding: 1px 4px; border-radius: 3px; }
-.badge { font-size: 11px; padding: 2px 7px; border-radius: var(--border-radius-md); }
-.badge-ok { background: var(--color-background-success); color: var(--color-text-success); }
-.badge-err { background: var(--color-background-danger); color: var(--color-text-danger); }
-.status { font-size: 13px; color: var(--color-text-tertiary); padding: 0.5rem 0; }
-.version { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 1rem; }
-.open-link { font-size: 12px; color: var(--color-text-info); text-decoration: none; display: inline-block; margin-top: 10px; }
-</style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<div class="dashboard">
-  <h2 style="font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:1rem;">Champion dashboard</h2>
-  <div class="header">
-    <img id="champ-icon" class="champ-icon" src="" alt="" style="display:none;" />
-    <div class="search-row">
-      <input type="text" id="champ-input" placeholder="Champion name (e.g. Syndra)" />
-      <button onclick="loadChampion()">Load ↗</button>
-    </div>
+  :root {
+    --bg: #0d0d0f;
+    --bg2: #131316;
+    --bg3: #1a1a1f;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --text: #f0eeea;
+    --text2: #9997a0;
+    --text3: #5a5860;
+    --accent: #c8a96e;
+    --accent2: #e8c98e;
+    --spell-p: #7c6fa0;
+    --spell-q: #5b8fa8;
+    --spell-w: #4a9970;
+    --spell-e: #a06060;
+    --spell-r: #c8a040;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  html { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+  body { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  /* Header */
+  .site-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
+  .site-title { font-family: var(--font-head); font-size: 13px; font-weight: 500; color: var(--text3); letter-spacing: 0.12em; text-transform: uppercase; }
+  .site-title a { color: inherit; text-decoration: none; }
+  .site-title a:hover { color: var(--text2); }
+
+  /* Search bar */
+  .search-section { margin-bottom: 2.5rem; }
+  .search-label { font-family: var(--font-head); font-size: 11px; font-weight: 500; color: var(--text3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+  .search-row { display: flex; gap: 10px; align-items: center; }
+  .search-row input {
+    flex: 1; max-width: 360px;
+    background: var(--bg2); border: 0.5px solid var(--border2);
+    border-radius: var(--radius-sm); padding: 10px 14px;
+    font-family: var(--font-head); font-size: 15px; color: var(--text);
+    outline: none; transition: border-color 0.15s;
+  }
+  .search-row input::placeholder { color: var(--text3); }
+  .search-row input:focus { border-color: var(--accent); }
+  .search-row button {
+    background: var(--accent); color: #0d0d0f;
+    border: none; border-radius: var(--radius-sm);
+    padding: 10px 20px; font-family: var(--font-head); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .search-row button:hover { background: var(--accent2); }
+  .search-row button:active { transform: scale(0.97); }
+
+  /* Champion header strip */
+  #champ-strip { display: none; align-items: center; gap: 16px; margin-bottom: 2rem; padding: 1rem 1.25rem; background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); }
+  #champ-strip img { width: 60px; height: 60px; border-radius: var(--radius-sm); border: 0.5px solid var(--border2); object-fit: cover; }
+  #champ-strip .champ-name { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--text); }
+  #champ-strip .champ-meta { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+  /* Status */
+  #status { font-size: 13px; color: var(--text3); padding: 0.25rem 0 1rem; min-height: 1.5rem; }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+
+  /* Cards */
+  .card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.25rem; min-width: 0; }
+  .card-title { font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text3); margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; }
+
+  /* Spells */
+  .spell { padding: 10px 0; border-bottom: 0.5px solid var(--border); }
+  .spell:last-child { border-bottom: none; padding-bottom: 0; }
+  .spell-header { display: flex; align-items: center; gap: 9px; margin-bottom: 4px; }
+  .spell-key {
+    width: 24px; height: 24px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: 11px; font-weight: 700;
+    flex-shrink: 0; border: 0.5px solid rgba(255,255,255,0.15);
+  }
+  .key-P { background: rgba(124,111,160,0.2); color: var(--spell-p); }
+  .key-Q { background: rgba(91,143,168,0.2); color: var(--spell-q); }
+  .key-W { background: rgba(74,153,112,0.2); color: var(--spell-w); }
+  .key-E { background: rgba(160,96,96,0.2); color: var(--spell-e); }
+  .key-R { background: rgba(200,160,64,0.2); color: var(--spell-r); }
+  .spell-name { font-family: var(--font-head); font-size: 13px; font-weight: 500; color: var(--text); }
+  .spell-desc { font-size: 12px; color: var(--text2); line-height: 1.5; margin-bottom: 3px; }
+  .spell-meta { font-size: 11px; color: var(--text3); }
+
+  /* Note */
+  .note-wrap { font-size: 13px; color: var(--text2); line-height: 1.7; }
+  .note-wrap h1,.note-wrap h2 { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--text); margin: 14px 0 4px; }
+  .note-wrap h3,.note-wrap h4 { font-family: var(--font-head); font-size: 13px; font-weight: 500; color: var(--text); margin: 10px 0 3px; }
+  .note-wrap p { margin-bottom: 7px; }
+  .note-wrap ul,.note-wrap ol { padding-left: 1.2rem; margin-bottom: 7px; }
+  .note-wrap li { margin-bottom: 3px; }
+  .note-wrap hr { border: none; border-top: 0.5px solid var(--border); margin: 10px 0; }
+  .note-wrap a { color: var(--accent); text-decoration: none; }
+  .note-wrap a:hover { color: var(--accent2); }
+  .note-wrap blockquote { border-left: 2px solid var(--border2); padding-left: 10px; color: var(--text3); margin: 6px 0; font-style: italic; }
+  .note-wrap strong { font-weight: 500; color: var(--text); }
+  .note-wrap code { font-family: monospace; font-size: 11px; background: var(--bg3); padding: 1px 5px; border-radius: 3px; }
+
+  /* Badge */
+  .badge { font-size: 10px; font-family: var(--font-head); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; }
+  .badge-ok { background: rgba(74,153,112,0.15); color: var(--spell-w); border: 0.5px solid rgba(74,153,112,0.3); }
+  .badge-err { background: rgba(160,96,96,0.15); color: var(--spell-e); border: 0.5px solid rgba(160,96,96,0.3); }
+
+  .open-link { display: inline-block; margin-top: 12px; font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-head); }
+  .open-link:hover { color: var(--accent2); }
+
+  .version-tag { font-size: 11px; color: var(--text3); margin-bottom: 1.5rem; font-family: var(--font-head); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="site-title"><a href="https://arnaubadenas.github.io/gamenotes/">Haru's game notes</a> / Champion dashboard</span>
+</header>
+
+<section class="search-section">
+  <label class="search-label" for="champ-input">Champion</label>
+  <div class="search-row">
+    <input type="text" id="champ-input" placeholder="e.g. Syndra, Aurora, MissFortune" autocomplete="off" />
+    <button onclick="loadChampion()">Load</button>
   </div>
-  <div id="version-line" class="version"></div>
-  <div id="status" class="status">Enter a champion name to get started.</div>
-  <div id="grid" class="grid" style="display:none;"></div>
+</section>
+
+<div id="champ-strip">
+  <img id="champ-icon" src="" alt="" />
+  <div>
+    <div id="champ-name" class="champ-name"></div>
+    <div id="champ-meta" class="champ-meta"></div>
+  </div>
 </div>
+
+<div id="version-tag" class="version-tag"></div>
+<div id="status">Enter a champion name to load their data.</div>
+<div id="grid" class="grid" style="display:none;"></div>
 
 <script>
 const QUARTZ_BASE = "https://arnaubadenas.github.io/gamenotes";
 const RAW_BASE = "https://raw.githubusercontent.com/ArnauBadenas/gamenotes/main/source/content";
-const NOTE_PATH = "League-of-legends/Champions";
-let ddVersion = null;
+const NOTE_PATH = "League%20of%20legends/Champions";
+const NOTE_PATH_QUARTZ = "League-of-legends/Champions";
+
 
 async function getVersion() {
   if (ddVersion) return ddVersion;
@@ -69,8 +171,8 @@ async function loadChampion() {
   const name = raw.charAt(0).toUpperCase() + raw.slice(1);
   setStatus("Loading...");
   document.getElementById("grid").style.display = "none";
-  document.getElementById("champ-icon").style.display = "none";
-  document.getElementById("version-line").textContent = "";
+  document.getElementById("champ-strip").style.display = "none";
+  document.getElementById("version-tag").textContent = "";
 
   const [spellResult, noteResult] = await Promise.allSettled([
     fetchSpells(name),
@@ -78,16 +180,19 @@ async function loadChampion() {
   ]);
 
   if (spellResult.status === "rejected" || spellResult.value?.error) {
-    setStatus(`Could not find "${name}" in DDragon. Check spelling (e.g. MissFortune, MonkeyKing).`);
+    setStatus(`Could not find "${name}" in DDragon. Check spelling — use internal names like MissFortune or MonkeyKing.`);
     return;
   }
 
-  const { spells, passive, version } = spellResult.value;
-  document.getElementById("version-line").textContent = `DDragon ${version}`;
-  const icon = document.getElementById("champ-icon");
-  icon.src = `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${name}.png`;
-  icon.alt = name;
-  icon.style.display = "block";
+  const { spells, passive, version, title, tags } = spellResult.value;
+  document.getElementById("version-tag").textContent = `DDragon ${version}`;
+
+  const strip = document.getElementById("champ-strip");
+  document.getElementById("champ-icon").src = `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${name}.png`;
+  document.getElementById("champ-icon").alt = name;
+  document.getElementById("champ-name").textContent = title || name;
+  document.getElementById("champ-meta").textContent = tags ? tags.join(" · ") : "";
+  strip.style.display = "flex";
 
   setStatus("");
   const grid = document.getElementById("grid");
@@ -103,7 +208,7 @@ async function fetchSpells(name) {
   if (!r.ok) return { error: true };
   const data = await r.json();
   const champ = data.data[name];
-  return { spells: champ.spells, passive: champ.passive, version };
+  return { spells: champ.spells, passive: champ.passive, version, title: champ.name, tags: champ.tags };
 }
 
 async function fetchNote(name) {
@@ -132,7 +237,7 @@ function buildAbilitiesCard(passive, spells) {
     const desc = s.desc.replace(/<[^>]*>/g, "");
     el.innerHTML = `
       <div class="spell-header">
-        <div class="spell-key">${s.key}</div>
+        <div class="spell-key key-${s.key}">${s.key}</div>
         <span class="spell-name">${s.name}</span>
       </div>
       <div class="spell-desc">${desc}</div>
@@ -144,35 +249,31 @@ function buildAbilitiesCard(passive, spells) {
 }
 
 function buildNoteCard(md, name) {
-  const noteUrl = `${QUARTZ_BASE}/${NOTE_PATH}/${name}`;
+  const noteUrl = `${QUARTZ_BASE}/${NOTE_PATH_QUARTZ}/${name}`;
   const card = document.createElement("div");
   card.className = "card";
 
+  const titleDiv = document.createElement("div");
+  titleDiv.className = "card-title";
+
   if (md) {
-    const titleDiv = document.createElement("div");
-    titleDiv.className = "card-title";
     titleDiv.innerHTML = `<span>Your note</span><span class="badge badge-ok">found</span>`;
     card.appendChild(titleDiv);
-
     const wrap = document.createElement("div");
     wrap.className = "note-wrap";
     wrap.innerHTML = marked.parse(md);
     card.appendChild(wrap);
-
     const link = document.createElement("a");
     link.className = "open-link";
     link.href = noteUrl;
-    link.textContent = "Open on Quartz →";
+    link.textContent = "Open full note →";
     card.appendChild(link);
   } else {
-    const titleDiv = document.createElement("div");
-    titleDiv.className = "card-title";
     titleDiv.innerHTML = `<span>Your note</span><span class="badge badge-err">not found</span>`;
     card.appendChild(titleDiv);
-
     const msg = document.createElement("p");
-    msg.style.cssText = "font-size:13px;color:var(--color-text-secondary);margin-top:8px;line-height:1.6;";
-    msg.innerHTML = `No note found at <code style="font-family:var(--font-mono);font-size:11px;background:var(--color-background-secondary);padding:1px 4px;border-radius:3px;">${NOTE_PATH}/${name}.md</code> on GitHub.<br><br>Create the note in Obsidian and push it to your repo.`;
+    msg.style.cssText = "font-size:13px;color:var(--text3);margin-top:8px;line-height:1.6;";
+    msg.innerHTML = `No note found at<br><code style="font-family:monospace;font-size:11px;background:var(--bg3);padding:2px 5px;border-radius:3px;">${NOTE_PATH}/${name}.md</code><br><br>Create it in Obsidian inside your <code style="font-family:monospace;font-size:11px;background:var(--bg3);padding:2px 5px;border-radius:3px;">League-of-legends/Champions</code> folder and push to GitHub.`;
     card.appendChild(msg);
   }
   return card;
@@ -186,3 +287,5 @@ document.getElementById("champ-input").addEventListener("keydown", e => {
   if (e.key === "Enter") loadChampion();
 });
 </script>
+</body>
+</html>
