@@ -1,23 +1,59 @@
-# Obsidian / Quartz / GitHub Pages Template
+# 🎮 gamenotes
 
-Deployed URL: https://defenderofbasic.github.io/obsidian-quartz-template
+Notas personales de videojuegos publicadas con [Quartz v4](https://quartz.jzhao.xyz/) en GitHub Pages.
 
-Template for hosting your Obsidian notebook on GitHub pages with CI deployment. 
+🔗 **Web:** https://arnaubadenas.github.io/gamenotes/
+📊 **Dashboard:** https://arnaubadenas.github.io/gamenotes/dashboard.html
 
-## Basic setup
+---
 
-Full tutorial with screenshots & videos: https://dev.to/defenderofbasic/host-your-obsidian-notebook-on-github-pages-for-free-8l1. 
+## Cómo funciona
 
-It's basically (1) fork this (2) go to repo's "Settings" > "Pages", Under "Build and Deployment" select GitHub Actions. Then go to "Actions" and enable GitHub actions for your fork. Edit the pages in [source/content](./source/content) with Obsidian or any text editor. It generates HTML using [Quartz](https://github.com/jackyzha0/quartz). To generate the HTML locally, run `npx quartz build --serve` in `./source/`
+- Las notas viven en `source/content/` como archivos `.md` (Obsidian)
+- Al hacer push a `main`, GitHub Actions construye y despliega automáticamente
+- Los archivos en `source/raw_html/` se copian tal cual al build (para HTML custom como el dashboard)
 
-## Raw HTML pages
+---
 
-There is a [source/raw_html](./source/raw_html) folder that gets copied into the build folder in CI. This lets you host arbitrary HTML outside of quartz. Example: https://defenderofbasic.github.io/obsidian-quartz-template/raw-html-test.html
+## Añadir notas nuevas
 
-I made the "raw HTML" option for people who are generating HTML UI's with Claude/ChatGPT but want to tweak them/host them themselves. Or make a personal archive of web pages, etc.
+1. Crea el `.md` en Obsidian dentro de `source/content/`
+2. Usa la estructura de carpetas existente:
+   - `League of legends/Champions/NombreCampeón.md` → notas de campeón
+   - `League of legends/` → notas generales de LoL
+3. Haz commit y push — la web se actualiza sola en ~1 min
 
-## Further customization
+---
 
-> Quartz is meant to be extremely configurable, even if you don’t know any coding. Most of the configuration you should need can be done by just editing quartz.config.ts or changing the layout in quartz.layout.ts.
+## Usar el dashboard
 
-https://quartz.jzhao.xyz/configuration
+Abre https://arnaubadenas.github.io/gamenotes/dashboard.html
+
+- **Busca un campeón** por nombre (ej. `Syndra`, `Aurora`, `Miss Fortune`)
+- Muestra habilidades desde la DDragon API (siempre actualizado al último parche)
+- Si tienes una nota en `League of legends/Champions/NombreCampeón.md`, la carga automáticamente al lado
+- El panel **"Preguntas que hacerse cada partida"** es el checklist general — se resetea con el botón o al cerrar el navegador
+
+### Añadir nota de campeón nueva
+
+```
+source/content/League of legends/Champions/Syndra.md   ✅ aparece en el dashboard
+source/content/League of legends/Champions/Yasuo.md    ✅ aparece en el dashboard
+```
+
+El nombre del archivo debe coincidir exactamente con el nombre del campeón (mayúsculas incluidas).
+
+---
+
+## Estructura
+
+```
+source/
+├── content/                  # Notas en Markdown (Obsidian)
+│   └── League of legends/
+│       ├── Champions/        # Una nota por campeón
+│       └── ...               # Notas generales
+├── raw_html/                 # HTML que se sirve directamente
+│   └── dashboard.html        # Dashboard de campeones
+└── quartz.config.ts          # Config de Quartz
+```
